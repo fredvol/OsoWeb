@@ -13,6 +13,9 @@
 		OSO Database API SQL<br />
 	</p>
 	<?php
+        // exmple : http://192.168.1.56/oso_web/V1/sql.php?key=osopass&sql=INSERT%20INTO%20`oso_test`.`position`%20(`id`,%20`user`,%20`datept`,%20`latitude`,%20`longitude`,%20`altitude`,%20`battery`)%20VALUES%20(NULL,%20%2725fp2112%27,%20%272016-12-21%2023:01:06%27,%20%2745.4225%27,%20%273.30178%27,%20%271520%27,%20%2760%27);
+        // INSERT INTO `oso_test`.`position` (`id`, `user`, `datept`, `latitude`, `longitude`, `altitude`, `battery`) VALUES (NULL, '25fp2112', '2016-12-21 23:01:06', '45.4225', '3.30178', '1520', '60');
+
 	// Connexion database
 		try
 		{
@@ -61,7 +64,8 @@
 			
 	function check_auth($pass)
 	{
-		$hash = 'a924a2c7c84378d368a7c8f977dc73004c05b727';
+            //osopass
+		$hash = '7f77f2e50c992b2f223c00cb24f5faa72b72861e';
 		if (sha1($pass) == $hash)
 		{   // Login/password is correct.
 			return true;

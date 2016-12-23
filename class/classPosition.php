@@ -2,7 +2,7 @@
 <?php
 class Position
 {
-    // déclaration d'une propriété
+    // dï¿½claration d'une propriï¿½tï¿½
     public $_id = NULL;
 	public $_user =NULL;
 	public $_datept = NULL;
@@ -28,13 +28,17 @@ class Position
     }
 	
 	
-    // déclaration des méthodes
+    // dï¿½claration des mï¿½thodes
     public function displayid() {
         echo $this->_id."<br>";
     }
-	// déclaration des méthodes
+	// dï¿½claration des mï¿½thodes
     public function displayPosition() {
-        echo "Pos:".$this->_id.";".$this->_user.";".$this->_datept.";".$this->_lat.";".$this->_long.";".$this->_alt.";".$this->_bat."<br>";
+        echo "Pos:".$this->_id." ; ".$this->_user." ; ".$this->_datept." ; ".$this->_lat." ; ".$this->_long." ; ".$this->_alt." ; ".$this->_bat."<br>";
+    }
+    
+    public function displayNicelyPosition() {
+        echo "ID:".$this->_id."<br> User: ".$this->_user."<br>Date: ".$this->_datept."<br> Latitude: ".$this->_lat."<br>Longitude: ".$this->_long."<br>Altitude: ".$this->_alt."<br>Battery: ".$this->_bat."<br>";
     }
 }
 ?>
