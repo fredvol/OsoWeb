@@ -10,7 +10,7 @@
 	
 	<h1>OSO Api V1</h1>
 	<p>
-		OSO Database API<br />
+		OSO Database API SQL<br />
 	</p>
 	<?php
 	// Connexion database
