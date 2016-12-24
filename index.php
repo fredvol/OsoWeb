@@ -63,7 +63,7 @@
                                             $req->closeCursor(); // Termine le traitement de la requête
                                             echo " Number of points: ".count($track)."<br>";
                                              if (count($track)==0){
-                                                 echo "No points found for this user id (or user id not valid ). ";
+                                                 echo '<span style="color: red;text-align:center;">No points found for this user id (or user id not valid )!</span>  ';
                                              }
                                             
                                             
