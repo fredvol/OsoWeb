@@ -46,9 +46,6 @@
                        $user=$_GET['u'];
                     } 
                     
-                    if (isset($_POST['user_Id'])) {
-                       $user=$_POST['user_Id'];
-                    }
                     
                     if (isset($user)) // Check user parameter is set in the URL
                     {
