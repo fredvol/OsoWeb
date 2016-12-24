@@ -26,13 +26,20 @@
             <div id="corps">
                     <h1>OSO</h1>
                    
-                    <form method="post" action="index.php">
-                        <p>
-                            Change user Id :
-                            <input type="text" name="user_Id" />
-                            <input type="submit" value="Follow" />
-                        </p>
-                    </form>
+                    <!-- User id text field -->
+                    <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" />
+                    <button onclick="location.href = 'www.yoursite.com';" id="ButtonFollowId" class="float-left submit-button" >Follow</button>
+                    
+                    <script type="text/javascript">
+                        var input = document.getElementById("searchTxt");   
+                        console.log(input);
+                       document.getElementById("ButtonFollowId").onclick = function () {
+                           location.href = "?u="+ input.value;
+                       };
+                    </script>
+                    <br>
+                    
+                    <!-- PHP Part -->
                     <?php
                     $user=NULL;
                     if (isset($_GET['u'])) {
