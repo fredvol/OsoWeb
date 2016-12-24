@@ -25,9 +25,7 @@
             <!-- Le corps -->
             <div id="corps">
                     <h1>OSO</h1>
-                    <p>
-                            OSO web site draft !<br />
-                    </p>
+                   
                     <?php
                     if (isset($_GET['u'])) // Check user parameter is set in the URL
                     {
@@ -47,15 +45,16 @@
                                                 //echo 'ID :' . htmlspecialchars($donnees['id']) . ' user :'.$donnees['user'].' !'."<br>";
                                             }
                                             $req->closeCursor(); // Termine le traitement de la requête
-                                            echo "<br> Number of points: ".count($track)."<br>";
-                                            echo "<br>".'-----Last Point details:-----'."<br>";
-                                            echo $track[0]->displayNicelyPosition();
-                                            echo "<br>".'-----All Points details:-----'."<br>";
+                                            echo " Number of points: ".count($track)."<br>";
                                             
-                                            foreach ($track as $item) {
-                                                echo $item->displayPosition() ;
-
-                                            }
+                                            
+                                           // echo "<br>".'-----Last Point details:-----'."<br>";
+                                           // echo $track[0]->displayNicelyPosition();
+                                           // echo "<br>".'-----All Points details:-----'."<br>";
+                                            
+                                            //foreach ($track as $item) {
+                                             //   echo $item->displayPosition() ;
+                                            //}
                     }
                     else // Il manque des paramètres, on avertit le visiteur
                     {
@@ -66,7 +65,7 @@
                     echo "<br>".'-----MAP:-----'."<br>";
                     ?>
 
-                     <div id="macarte" style="width:600px; height:400px"></div>
+                     <div id="macarte" style="width:70vw; height:400px"></div>
             </div>
 
             <!-- Map -->
@@ -90,6 +89,9 @@
                               mapopup.setContent(DisplayPositionInComment(jTrackArray[i]));
                              // mapopup.setContent('Salut, ça zeste ?'+jTrackArray[i]._datept);
                              // marker.openPopup();
+                             if (i==0){
+                                 marker.openPopup();
+                             }
                     }
 
                     //Draw line
@@ -104,7 +106,7 @@
                     
                     //function JS to display position:
                     function DisplayPositionInComment(pos) {
-                        return "Date: " + pos._datept + "\n Altitude: " + pos._alt + "\n Battery: "+pos._bat ;      // The function returns the product of p1 and p2
+                        return "Date: " + pos._datept +"<br> Altitude: " + pos._alt +" m "+"<br> Battery: "+pos._bat+" %";      // The function returns the product of p1 and p2
 }
              </script>
 
