@@ -26,14 +26,30 @@
             <div id="corps">
                     <h1>OSO</h1>
                    
+                    <form method="post" action="index.php">
+                        <p>
+                            Change user Id :
+                            <input type="text" name="user_Id" />
+                            <input type="submit" value="Follow" />
+                        </p>
+                    </form>
                     <?php
-                    if (isset($_GET['u'])) // Check user parameter is set in the URL
+                    $user=NULL;
+                    if (isset($_GET['u'])) {
+                       $user=$_GET['u'];
+                    } 
+                    
+                    if (isset($_POST['user_Id'])) {
+                       $user=$_POST['user_Id'];
+                    }
+                    
+                    if (isset($user)) // Check user parameter is set in the URL
                     {
-                            echo 'Track for :' . htmlspecialchars($_GET['u']) . "<br>";
+                            echo 'Track for : <b>' . htmlspecialchars($user) . "</b><br>";
 
                                     // On récupère tout le contenu de la table position pour un user
                                     $req = $bdd->prepare('SELECT * FROM position  WHERE user= :user ORDER BY `position`.`datept` DESC');
-                                    $req->execute(array('user' => $_GET['u']));
+                                    $req->execute(array('user' => $user));
                                     //echo "<br>".'-----------'."<br>";
 
                                     // create track 
@@ -46,6 +62,9 @@
                                             }
                                             $req->closeCursor(); // Termine le traitement de la requête
                                             echo " Number of points: ".count($track)."<br>";
+                                             if (count($track)==0){
+                                                 echo "No points found for this user id (or user id not valid ). ";
+                                             }
                                             
                                             
                                            // echo "<br>".'-----Last Point details:-----'."<br>";
