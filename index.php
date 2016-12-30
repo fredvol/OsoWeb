@@ -8,7 +8,7 @@
     </head>
     <body>
 	<?php include("class/classPosition.php"); ?>
-	<!-- adresse test  : http://192.168.1.56/oso_web/?u=25fp2012 -->
+	<!-- adresse test  : http://192.168.0.52/oso_web/?u=25fp2012 -->
 
 		
             <?php
@@ -49,7 +49,7 @@
                     
                     if (isset($user)) // Check user parameter is set in the URL
                     {
-                            echo 'Track for : <b>' . htmlspecialchars($user) . "</b><br>";
+                            echo 'Track for: <b>' . htmlspecialchars($user) . "</b><br>";
 
                                     // On récupère tout le contenu de la table position pour un user
                                     $req = $bdd->prepare('SELECT * FROM position  WHERE user= :user ORDER BY `position`.`datept` DESC');

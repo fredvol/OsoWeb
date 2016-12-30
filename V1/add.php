@@ -19,11 +19,11 @@
 // CONNEXION TO DATABASE
         try
         {
-                $bdd = new PDO('mysql:host=localhost;dbname=oso_test;charset=utf8', 'root', 'mysqlfred', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $bdd = new PDO('mysql:host=localhost;dbname=oso_test;charset=utf8', 'root', 'mysqlfred', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         catch (Exception $e)
         {
-                die('Erreur : ' . $e->getMessage());
+            die('Erreur : ' . $e->getMessage());
         }
 
 
