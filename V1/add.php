@@ -10,7 +10,7 @@
 
     <h1>OSO Api V1</h1>
     <p>
-        OSO Database API add<br />
+        {APIV1<br />
     </p>
     <?php
     // exemple url: http://192.168.1.56/oso_web/V1/add.php?u=26fp2112&datept=2016-12-21%2023:25:06&lat=45.4655&long=3.30528&alt=1520&bat=18
@@ -131,9 +131,11 @@
         if (strlen($json_params) > 0 && isValidJSON($json_params))
         {
             $decoded_params = json_decode($json_params);
-            echo "<br>".'Post Valid'."<br>";
+            echo "<br>".'"State"="Valid",'."<br>";
             //echo "<br>".var_dump($decoded_params)."<br>";
             $totalrowModif=0;
+            $listrowModif=array();
+            
             foreach ($decoded_params as &$postPoints) {
                 
                 try
@@ -142,6 +144,10 @@
                         $req =$bdd->query(addParaminPOSTquery($postPoints));
 
                         $totalrowModif=$totalrowModif+$req->rowCount();
+                        if ($req->rowCount()==1){
+                            array_push($listrowModif, $postPoints->{"datept"});   
+                        }
+                   
                         $req->closeCursor(); // Termine le traitement de la requête
                     }
                     catch(Exception $e)
@@ -151,11 +157,11 @@
             }
           
         } else {
-            echo "<br>".'POST Parameters not valid'."<br>";
+            echo "<br>".'"State"="POST Parameters NOT valid"'."<br>";
         }
         
-        
-        echo "<br>".'TOTAL ROW AFFECTED: '.$totalrowModif."<br>";
+        echo "<br>".'"Modif":'.print_r($listrowModif)."}<br>";
+        echo "<br>".'"Total":'.$totalrowModif."}<br>";
         
         
     }
@@ -182,17 +188,17 @@
     
     /*To generate random  on http://www.json-generator.com/
      * [
-            '{{repeat(10, 20)}}',
-            {
-              index: '{{index()}}',
-              u: 'zb829cn',
-              datept: '{{date(new Date(2016,11, 30),new Date(2016,11, 30), "YYYY-MM-dd hh:mm:ss")}}',
-              lat: '{{floating(42.400001, 42.600001)}}',
-              long: '{{floating(1.700001, 2.400001)}}',
-              alt: '{{integer(1500, 2000)}}',
-              bat: '{{integer(15, 100)}}'
-            }
-          ]
+        '{{repeat(10, 20)}}',
+        {
+          index: '{{index()}}',
+          u: 'aa000ab',
+          datept: '{{date(new Date(2016,11, 30,5,0),new Date(2016,11, 30,11,0), "YYYY-MM-dd hh:mm:ss")}}',
+          lat: '{{floating(42.400001, 42.600001)}}',
+          long: '{{floating(1.700001, 2.400001)}}',
+          alt: '{{integer(1500, 2000)}}',
+          bat: '{{integer(15, 100)}}'
+        }
+      ]
      */
 
     ?>
