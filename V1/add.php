@@ -133,16 +133,67 @@
             $decoded_params = json_decode($json_params);
             echo "<br>".'Post Valid'."<br>";
             //echo "<br>".var_dump($decoded_params)."<br>";
+            $totalrowModif=0;
             foreach ($decoded_params as &$postPoints) {
-                var_dump($postPoints);
-                echo "<br>".'----------------------------------'."<br>";
+                
+                try
+                    {		
+
+                        $req =$bdd->query(addParaminPOSTquery($postPoints));
+
+                        $totalrowModif=$totalrowModif+$req->rowCount();
+                        $req->closeCursor(); // Termine le traitement de la requête
+                    }
+                    catch(Exception $e)
+                    {
+                            die('Erreur : '.$e->getMessage());
+                    }
             }
-          
           
         } else {
             echo "<br>".'POST Parameters not valid'."<br>";
         }
+        
+        
+        echo "<br>".'TOTAL ROW AFFECTED: '.$totalrowModif."<br>";
+        
+        
     }
+    
+    // Function to make the query  from POST
+    //TODO : check if paramter exist/
+        function addParaminPOSTquery($postPoints){
+                $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat)';
+                $assoc=array(
+                ':user'=> $postPoints->{"u"},
+                ':datept'=> $postPoints->{"datept"},
+                ':lat'=> $postPoints->{"lat"},
+                ':long'=> $postPoints->{"long"},
+                ':alt'=> $postPoints->{"alt"},
+                ':bat'=> $postPoints->{"bat"},
+                );
+                $exQuery=str_replace(array_keys($assoc), array_values($assoc), $query);
+                //http://192.168.0.52/oso_web/V1/add.php
+                return $exQuery;
+            }
+    
+    
+    
+    
+    /*To generate random  on http://www.json-generator.com/
+     * [
+            '{{repeat(10, 20)}}',
+            {
+              index: '{{index()}}',
+              u: 'zb829cn',
+              datept: '{{date(new Date(2016,11, 30),new Date(2016,11, 30), "YYYY-MM-dd hh:mm:ss")}}',
+              lat: '{{floating(42.400001, 42.600001)}}',
+              long: '{{floating(1.700001, 2.400001)}}',
+              alt: '{{integer(1500, 2000)}}',
+              bat: '{{integer(15, 100)}}'
+            }
+          ]
+     */
 
     ?>
     </body>
