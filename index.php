@@ -34,11 +34,18 @@
             <div id="corps">
                    
                     <!-- User id text field -->
-                    <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" />
-                    <button onclick="location.href = 'www.yoursite.com';" id="ButtonFollowId" class="btn btn-info" >Follow</button>
-                    <button onclick="FooterAppear()" class="btn btn-success" >Credits</button>
+                    <div class="row">
+                        <div class="col-md-2 col-xs-2">
+                            <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="form-control searchField" />
+                        </div>
+                        <div class="col-md-2 col-xs-2">
+                            <button id="ButtonFollowId" type="submit" class="btn btn-info" >Follow</button> 
+                            <button onclick="FooterAppear()" class="btn btn-success" >Credits</button>
+                        </div>
+                    </div>
                     
-                    <img style="width:5%;float:right;" src="/oso_web/assets/img/logo.png">
+                    
+                    <img style="width:5%;position: fixed;float:right;bottom: 1%;right: 1px;" src="/oso_web/assets/img/logo.png">
                     
                     <script type="text/javascript">
                         var input = document.getElementById("searchTxt");   
@@ -101,9 +108,7 @@
             
             
                      <div id="macarte" style="width:100%; height:100%; position:fixed;"> </div>
-                     
-                     <div class="logo" ></div>
-                     
+                                          
                      <div id="sidebar" class="sidebar hidden">
                          <button style="padding: 5px;border: 1px solid black;" onclick="FooterDisapear()" > X</button>
                          <p></p>
