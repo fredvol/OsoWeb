@@ -5,9 +5,14 @@
         <title>Oso Website</title>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
                 <link type="text/css" rel="stylesheet" media="screen and (max-width: 4000px)" href="/oso_web/assets/css/style.css" />
+                <link type="text/css" rel="stylesheet" href="/oso_web/assets/css/bootstrap.min.css" />
                 <!-- <link type="text/css" rel="stylesheet" media="screen and (max-width: 640px)" href="/oso_web/assets/css/stylePetit.css" /> -->
                 
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+                
 		<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+		<script src="/oso_web/assets/css/bootstrap.min.js"></script>
+		<script src="/oso_web/assets/css/npm.js"></script>
     </head>
     <body>
 	<?php include("class/classPosition.php"); ?>
@@ -30,7 +35,10 @@
                    
                     <!-- User id text field -->
                     <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" />
-                    <button onclick="location.href = 'www.yoursite.com';" id="ButtonFollowId" class="float-left submit-button" >Follow</button>
+                    <button onclick="location.href = 'www.yoursite.com';" id="ButtonFollowId" class="btn btn-info" >Follow</button>
+                    <button onclick="FooterAppear()" class="btn btn-success" >Credits</button>
+                    
+                    <img style="width:5%;float:right;" src="/oso_web/assets/img/logo.png">
                     
                     <script type="text/javascript">
                         var input = document.getElementById("searchTxt");   
@@ -94,19 +102,28 @@
             
                      <div id="macarte" style="width:100%; height:100%; position:fixed;"> </div>
                      
-                     <div class="logo"><img style="width:50%;" src="/oso_web/assets/img/logo.png"></div>
+                     <div class="logo" ></div>
                      
-                     <div class="sidebar hidden"> 
+                     <div id="sidebar" class="sidebar hidden">
+                         <button style="padding: 5px;border: 1px solid black;" onclick="FooterDisapear()" > X</button>
+                         <p></p>
                          <?php include("footpage.php"); ?> 
                      </div>
 
             <!-- Map -->
             <script type="text/javascript">
                      // import array from Php
+                     
                     var jTrackArray= <?php echo json_encode($track ); ?>;
 
+                    var carte = L.map('macarte');
                     //Prepare map
-                    var carte = L.map('macarte').setView([jTrackArray[0]._lat, jTrackArray[0]._long], 10);
+                    if ( jTrackArray.length >= 3) {
+                                 carte.setView([jTrackArray[0]._lat, jTrackArray[0]._long], 10);
+                             } else {
+                               carte.setView([45.6, 3.7], 5);  
+                             }
+                    
 
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -140,6 +157,20 @@
                     function DisplayPositionInComment(pos) {
                         return "Date: " + pos._datept +"<br> Altitude: " + pos._alt +" m "+"<br> Battery: "+pos._bat+" %";      // The function returns the product of p1 and p2
 }
+             </script>
+             
+             <script>
+                 function FooterAppear() {
+                     console.log("La slide bar se montre");
+                    $("#sidebar").removeClass("hidden");    
+                 }
+                 
+                 function FooterDisapear() {
+                     console.log("La sidebar se cache");
+                    $("#sidebar").addClass("hidden");   
+                     
+                 }
+                 
              </script>
 
             <!-- Foot Page -->
