@@ -4,6 +4,9 @@
         <meta charset="utf-8" />
         <title>Oso Website</title>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+                <link type="text/css" rel="stylesheet" media="screen and (max-width: 4000px)" href="/oso_web/assets/css/style.css" />
+                <!-- <link type="text/css" rel="stylesheet" media="screen and (max-width: 640px)" href="/oso_web/assets/css/stylePetit.css" /> -->
+                
 		<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     </head>
     <body>
@@ -24,7 +27,6 @@
 
             <!-- Le corps -->
             <div id="corps">
-                    <h1>OSO</h1>
                    
                     <!-- User id text field -->
                     <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" />
@@ -84,12 +86,19 @@
                             echo 'No user set';
                     }
 
-
-                    echo "<br>".'-----MAP:-----'."<br>";
                     ?>
 
-                     <div id="macarte" style="width:70vw; height:400px"></div>
+                     
             </div>
+            
+            
+                     <div id="macarte" style="width:100%; height:100%; position:fixed;"> </div>
+                     
+                     <div class="logo"><img style="width:50%;" src="/oso_web/assets/img/logo.png"></div>
+                     
+                     <div class="sidebar hidden"> 
+                         <?php include("footpage.php"); ?> 
+                     </div>
 
             <!-- Map -->
             <script type="text/javascript">
@@ -134,7 +143,7 @@
              </script>
 
             <!-- Foot Page -->
-            <?php include("footpage.php"); ?>
+            <!-- -->
     </body>
 </html>
 	  
