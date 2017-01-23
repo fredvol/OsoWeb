@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html>
-<!-- Api v1 -->
 
-<head>
-    <meta charset="utf-8" />
-    <title>Oso Api V1</title>
-</head>
-    <body>
-
-    <h1>OSO Api V1</h1>
-    <p>
-        {APIV1<br />
-    </p>
+{
     <?php
     // exemple url: http://192.168.1.56/oso_web/V1/add.php?u=26fp2112&datept=2016-12-21%2023:25:06&lat=45.4655&long=3.30528&alt=1520&bat=18
 
@@ -123,6 +111,8 @@
        return json_last_error() == JSON_ERROR_NONE;
     }
 
+    
+    // MANAGE POST REQUEST
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -131,7 +121,7 @@
         if (strlen($json_params) > 0 && isValidJSON($json_params))
         {
             $decoded_params = json_decode($json_params);
-            echo "<br>".'"State"="Valid",'."<br>";
+            echo '"State":"Valid", "message":"';
             //echo "<br>".var_dump($decoded_params)."<br>";
             $totalrowModif=0;
             $listrowModif=array();
@@ -140,12 +130,11 @@
                 
                 try
                     {		
-
                         $req =$bdd->query(addParaminPOSTquery($postPoints));
 
                         $totalrowModif=$totalrowModif+$req->rowCount();
                         if ($req->rowCount()==1){
-                            array_push($listrowModif, $postPoints->{"datept"});   
+                            array_push($listrowModif, $postPoints->{"TimeStamp"});   
                         }
                    
                         $req->closeCursor(); // Termine le traitement de la requête
@@ -157,11 +146,21 @@
             }
           
         } else {
-            echo "<br>".'"State"="POST Parameters NOT valid"'."<br>";
+            echo '"State":" NOT valid"';
         }
-        
-        echo "<br>".'"Modif":'.print_r($listrowModif)."}<br>";
-        echo "<br>".'"Total":'.$totalrowModif."}<br>";
+               echo '", "timestamps": [';
+            for ($i = 0;$i <= count($listrowModif)-1 ; $i++) {
+                if ($i > 0) {
+                         echo ",";
+                }
+                     echo $listrowModif[$i];
+            }
+               // foreach ($listrowModif as &$value) {
+               //  echo $value.",";
+               // }
+            echo "]";      
+       // echo ',"Modif":'.print_r($listrowModif).",";
+        echo ', "Total":'.$totalrowModif;
         
         
     }
@@ -169,14 +168,19 @@
     // Function to make the query  from POST
     //TODO : check if paramter exist/
         function addParaminPOSTquery($postPoints){
-                $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat)';
+                $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery, accuracy, timestamp, networkstrength, comment, sessionId) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat, :acc, :timestamp, :networkstrength, \':comment\', \':sessionId\')';
                 $assoc=array(
-                ':user'=> $postPoints->{"u"},
-                ':datept'=> $postPoints->{"datept"},
-                ':lat'=> $postPoints->{"lat"},
-                ':long'=> $postPoints->{"long"},
-                ':alt'=> $postPoints->{"alt"},
-                ':bat'=> $postPoints->{"bat"},
+                ':user'=> $postPoints->{"SessionId"},
+                ':datept'=> $postPoints->{"DatePrise"},
+                ':lat'=> $postPoints->{"Lati"},
+                ':long'=> $postPoints->{"Long"},
+                ':alt'=> $postPoints->{"Alt"},
+                ':bat'=> $postPoints->{"Bat"},
+                ':acc'=> $postPoints->{"Acc"},
+                ':timestamp'=> $postPoints->{"TimeStamp"},
+                ':networkstrength'=> $postPoints->{"NetworkStrength"},
+                //':comment'=> $postPoints->{"Comment"},
+                ':sessionId'=> $postPoints->{"SessionId"}
                 );
                 $exQuery=str_replace(array_keys($assoc), array_values($assoc), $query);
                 //http://192.168.0.52/oso_web/V1/add.php
@@ -202,5 +206,5 @@
      */
 
     ?>
-    </body>
-</html>
+    }
+
