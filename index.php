@@ -69,7 +69,7 @@
                             echo 'Track for: <b>' . htmlspecialchars($user) . "</b><br>";
 
                                     // On récupère tout le contenu de la table position pour un user
-                                    $req = $bdd->prepare('SELECT * FROM position  WHERE user= :user ORDER BY `position`.`datept` DESC');
+                                    $req = $bdd->prepare('SELECT * FROM position  WHERE user= :user ORDER BY `position`.`timestamp` DESC');
                                     $req->execute(array('user' => $user));
                                     //echo "<br>".'-----------'."<br>";
 
@@ -78,7 +78,7 @@
                                     // On affiche chaque entrée une à une
                                             while ($donnees = $req->fetch())
                                             {
-                                                array_push($track, new Position($donnees['id'], $donnees['user'], $donnees['datept'], $donnees['latitude'], $donnees['longitude'], $donnees['altitude'], $donnees['battery']));
+                                                array_push($track, new Position($donnees['id'], $donnees['user'], $donnees['datept'],$donnees['timestamp'], $donnees['latitude'], $donnees['longitude'], $donnees['altitude'], $donnees['battery']));
                                                 //echo 'ID :' . htmlspecialchars($donnees['id']) . ' user :'.$donnees['user'].' !'."<br>";
                                             }
                                             $req->closeCursor(); // Termine le traitement de la requête
@@ -160,8 +160,30 @@
                     
                     //function JS to display position:
                     function DisplayPositionInComment(pos) {
-                        return "Date: " + pos._datept +"<br> Altitude: " + pos._alt +" m "+"<br> Battery: "+pos._bat+" %";      // The function returns the product of p1 and p2
-}
+                        return "Date: " + timeConverter(pos._timestamp) +"<br> Altitude: " + pos._alt +" m "+"<br> Battery: "+pos._bat+" %";      // The function returns the product of p1 and p2
+                    }
+                    
+
+                    function timeConverter(UNIX_timestamp){
+               
+                        console.log("UNIX_timestamp: "+UNIX_timestamp);
+                        var date = new Date(Math.floor(UNIX_timestamp));
+
+                             console.log("date: "+ dateToYMDHMS(date));
+                      return dateToYMDHMS(date);
+                    }
+
+            function dateToYMDHMS(date) {
+                var d = date.getDate();
+                var m = date.getMonth() + 1;
+                var y = date.getFullYear();
+                var H = date.getHours()
+                var M = date.getMinutes()
+                var S = date.getSeconds()
+                return '' + y + '/' + (m<=9 ? '0' + m : m) + '/' + (d <= 9 ? '0' + d : d+ '  '+ (H<=9 ? '0' + H : H)+':'+(M<=9 ? '0' + M : M)+':'+(S<=9 ? '0' + S : S));
+            }
+
+
              </script>
              
              <script>
