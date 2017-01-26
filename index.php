@@ -124,7 +124,7 @@
                     var carte = L.map('macarte');
                     //Prepare map
                     if ( jTrackArray.length >= 3) {
-                                 carte.setView([jTrackArray[0]._lat, jTrackArray[0]._long], 10);
+                                 carte.setView([jTrackArray[0]._lat, jTrackArray[0]._long], 13);
                              } else {
                                carte.setView([45.6, 3.7], 5);  
                              }
@@ -143,7 +143,9 @@
                               mapopup.setContent(DisplayPositionInComment(jTrackArray[i]));
                              // mapopup.setContent('Salut, ça zeste ?'+jTrackArray[i]._datept);
                              // marker.openPopup();
+                             marker.setOpacity(0.4) 	
                              if (i==0){
+                                 var markerCircle = L.circle([jTrackArray[i]._lat, jTrackArray[i]._long],100).addTo(carte);
                                  marker.openPopup();
                              }
                     }
@@ -198,6 +200,10 @@
                      
                  }
                  
+             </script>
+             
+             <script type="text/javascript">
+                setInterval('window.location.reload()', 300000);   // refresh every 5 minutes
              </script>
 
             <!-- Foot Page -->
