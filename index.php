@@ -146,6 +146,7 @@
                              marker.setOpacity(0.4) 	
                              if (i==0){
                                  var markerCircle = L.circle([jTrackArray[i]._lat, jTrackArray[i]._long],100).addTo(carte);
+                                  marker.setOpacity(1) 
                                  marker.openPopup();
                              }
                     }
@@ -154,7 +155,7 @@
                     var arrayPointLatLong=new Array();
                     for(var i=0;i<jTrackArray.length;i++){
                             //alert(jArray[i]._lat);
-                            console.log("traitement" ,i ,jTrackArray[i]._datept);
+                            console.log("traitement" ,i ,jTrackArray[i]._timestamp);
                               arrayPointLatLong.push([jTrackArray[i]._lat, jTrackArray[i]._long]);
                     }
                     var eskimon = L.polyline(arrayPointLatLong, {color: 'red'}).addTo(carte);
@@ -182,7 +183,8 @@
                 var H = date.getHours()
                 var M = date.getMinutes()
                 var S = date.getSeconds()
-                return '' + y + '/' + (m<=9 ? '0' + m : m) + '/' + (d <= 9 ? '0' + d : d+ '  '+ (H<=9 ? '0' + H : H)+':'+(M<=9 ? '0' + M : M)+':'+(S<=9 ? '0' + S : S));
+
+                return '' + y + '/' + (m<=9 ? '0' + m : m) + '/' + (d <= 9 ? '0' + d : d)+ '  '+ (H<=9 ? '0' + H : H)+':'+(M<=9 ? '0' + M : M)+':'+(S<=9 ? '0' + S : S);
             }
 
 

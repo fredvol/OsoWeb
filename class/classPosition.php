@@ -11,6 +11,8 @@ class Position
 	public $_long = NULL;
 	public $_alt = NULL;
 	public $_bat = NULL;
+        
+        // Todo : need to add acc and networkstrength
 	
 	public function __construct($id, $user, $datept, $timestamp, $lat, $long, $alt, $bat )
 	{
