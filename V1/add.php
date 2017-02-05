@@ -170,7 +170,7 @@
         function addParaminPOSTquery($postPoints){
                 $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery, accuracy, timestamp, networkstrength, comment, sessionId) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat, :acc, :timestamp, :networkstrength, \':comment\', \':sessionId\')';
                 $assoc=array(
-                ':user'=> $postPoints->{"SessionId"},
+                ':user'=> $postPoints->{"TrackingId"},
                 ':datept'=> $postPoints->{"DatePrise"},
                 ':lat'=> $postPoints->{"Lati"},
                 ':long'=> $postPoints->{"Long"},

@@ -22,7 +22,7 @@ try
     $i=0;
 
 while (!$Idfound and $i <= 5) {
-    $possibleid=chr(rand(97, 122)).chr(rand(97, 122)).rand(0,9).rand(0,9).rand(0,9).chr(rand(97, 122)).chr(rand(97, 122));
+    $possibleid=chr(rand(97, 122)).chr(rand(97, 122)).rand(0,9).rand(0,9).rand(0,9).rand(0,9).chr(rand(97, 122)).chr(rand(97, 122));
 
     $req = $bdd->prepare('SELECT COUNT(id) FROM position  WHERE user= :user' );
     $req->execute(array('user' => $possibleid));

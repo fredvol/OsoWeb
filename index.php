@@ -180,9 +180,9 @@
                 var d = date.getDate();
                 var m = date.getMonth() + 1;
                 var y = date.getFullYear();
-                var H = date.getHours()
-                var M = date.getMinutes()
-                var S = date.getSeconds()
+                var H = date.getHours();
+                var M = date.getMinutes();
+                var S = date.getSeconds();
 
                 return '' + y + '/' + (m<=9 ? '0' + m : m) + '/' + (d <= 9 ? '0' + d : d)+ '  '+ (H<=9 ? '0' + H : H)+':'+(M<=9 ? '0' + M : M)+':'+(S<=9 ? '0' + S : S);
             }
@@ -192,12 +192,12 @@
              
              <script>
                  function FooterAppear() {
-                     console.log("La slide bar se montre");
+                     console.log("show side bar");
                     $("#sidebar").removeClass("hidden");    
                  }
                  
                  function FooterDisapear() {
-                     console.log("La sidebar se cache");
+                     console.log("hide side bar");
                     $("#sidebar").addClass("hidden");   
                      
                  }
