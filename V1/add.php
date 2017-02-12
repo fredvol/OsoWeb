@@ -168,8 +168,9 @@
     // Function to make the query  from POST
     //TODO : check if paramter exist/
         function addParaminPOSTquery($postPoints){
-                $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery, accuracy, timestamp, networkstrength, comment, sessionId) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat, :acc, :timestamp, :networkstrength, \':comment\', \':sessionId\')';
-                
+              //  $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery, accuracy, timestamp, networkstrength, comment, sessionId) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat, :acc, :timestamp, :networkstrength, \':comment\', \':sessionId\')';
+                $query='INSERT INTO oso_test.position (id, user, latitude, longitude, altitude, battery, accuracy, timestamp, networkstrength, comment, sessionId) VALUES (NULL, \':user\', :lat, :long, :alt, :bat, :acc, :timestamp, :networkstrength, \':comment\', \':sessionId\')';
+               
                 
                 // Manage the case of the comment is null
                 if(isset($postPoints->{"Comment"})){
@@ -183,7 +184,7 @@
                 
                 $assoc=array(
                 ':user'=> $postPoints->{"TrackingId"},
-                ':datept'=> $postPoints->{"DatePrise"},
+               // ':datept'=> $postPoints->{"DatePrise"},
                 ':lat'=> $postPoints->{"Lati"},
                 ':long'=> $postPoints->{"Long"},
                 ':alt'=> $postPoints->{"Alt"},
