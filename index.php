@@ -170,9 +170,9 @@
                     //function JS to display position:
                     function DisplayPositionInComment(pos) {
                          console.log("Display _ pos.comment: "+pos._comment);
-                          var posComment= ""
+                          var posComment= "";
                           
-                         if(pos._comment!=""){
+                         if(pos._comment!==""){
                              posComment="<br> Comment:"+ pos._comment;
                          }
                          
