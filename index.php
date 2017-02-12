@@ -161,7 +161,7 @@
                     var arrayPointLatLong=new Array();
                     for(var i=0;i<jTrackArray.length;i++){
                             //alert(jArray[i]._lat);
-                            console.log("traitement" ,i ,jTrackArray[i]._timestamp);
+                            //console.log("traitement" ,i ,jTrackArray[i]._timestamp);
                               arrayPointLatLong.push([jTrackArray[i]._lat, jTrackArray[i]._long]);
                     }
                     var eskimon = L.polyline(arrayPointLatLong, {color: 'red'}).addTo(carte);
