@@ -169,6 +169,18 @@
     //TODO : check if paramter exist/
         function addParaminPOSTquery($postPoints){
                 $query='INSERT INTO oso_test.position (id, user, datept, latitude, longitude, altitude, battery, accuracy, timestamp, networkstrength, comment, sessionId) VALUES (NULL, \':user\', \':datept\', :lat, :long, :alt, :bat, :acc, :timestamp, :networkstrength, \':comment\', \':sessionId\')';
+                
+                
+                // Manage the case of the comment is null
+                if(isset($postPoints->{"Comment"})){
+
+                   $commentfound=$postPoints->{"Comment"};
+                } else {
+                   $commentfound=NULL ;
+                };
+               
+                
+                
                 $assoc=array(
                 ':user'=> $postPoints->{"TrackingId"},
                 ':datept'=> $postPoints->{"DatePrise"},
@@ -179,7 +191,7 @@
                 ':acc'=> $postPoints->{"Acc"},
                 ':timestamp'=> $postPoints->{"TimeStamp"},
                 ':networkstrength'=> $postPoints->{"NetworkStrength"},
-                //':comment'=> $postPoints->{"Comment"},
+                ':comment'=> $commentfound,
                 ':sessionId'=> $postPoints->{"SessionId"}
                 );
                 $exQuery=str_replace(array_keys($assoc), array_values($assoc), $query);

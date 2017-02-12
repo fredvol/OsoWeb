@@ -11,10 +11,11 @@ class Position
 	public $_long = NULL;
 	public $_alt = NULL;
 	public $_bat = NULL;
+        public $_comment = NULL;
         
         // Todo : need to add acc and networkstrength
 	
-	public function __construct($id, $user, $datept, $timestamp, $lat, $long, $alt, $bat )
+	public function __construct($id, $user, $datept, $timestamp, $lat, $long, $alt, $bat, $comment )
 	{
 		$this->_id = $id;
 		$this->_user = $user;
@@ -24,6 +25,7 @@ class Position
 		$this->_long = $long;
 		$this->_alt = $alt;
 		$this->_bat = $bat;
+                $this->_comment = $comment;
 	}
 
 	public function getid()
@@ -42,7 +44,7 @@ class Position
     }
     
     public function displayNicelyPosition() {
-        echo "ID:".$this->_id."<br> User: ".$this->_user."<br>Date: ".$this->_datept."<br> Latitude: ".$this->_lat."<br>Longitude: ".$this->_long."<br>Altitude: ".$this->_alt."<br>Battery: ".$this->_bat."<br>";
+        echo "ID:".$this->_id."<br> User: ".$this->_user."<br>Date: ".$this->_datept."<br> Latitude: ".$this->_lat."<br>Longitude: ".$this->_long."<br>Altitude: ".$this->_alt."<br>Battery: ".$this->_bat."<br>Comment: ".$this->_comment."<br>";
     }
 }
 ?>

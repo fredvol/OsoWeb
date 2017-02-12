@@ -78,8 +78,8 @@
                                     // On affiche chaque entrée une à une
                                             while ($donnees = $req->fetch())
                                             {
-                                                array_push($track, new Position($donnees['id'], $donnees['user'], $donnees['datept'],$donnees['timestamp'], $donnees['latitude'], $donnees['longitude'], $donnees['altitude'], $donnees['battery']));
-                                                //echo 'ID :' . htmlspecialchars($donnees['id']) . ' user :'.$donnees['user'].' !'."<br>";
+                                                array_push($track, new Position($donnees['id'], $donnees['user'], $donnees['datept'],$donnees['timestamp'], $donnees['latitude'], $donnees['longitude'], $donnees['altitude'], $donnees['battery'], $donnees['comment']));
+                                               // echo 'ID :' . htmlspecialchars($donnees['id']) . ' user :'.$donnees['user']. ' user :'.$donnees['comment'].' !'."<br>";
                                             }
                                             $req->closeCursor(); // Termine le traitement de la requête
                                             echo " Number of points: ".count($track)."<br>";
@@ -123,7 +123,7 @@
 
                     var carte = L.map('macarte');
                     //Prepare map
-                    if ( jTrackArray.length >= 3) {
+                    if ( jTrackArray.length >= 1) {
                                  carte.setView([jTrackArray[0]._lat, jTrackArray[0]._long], 13);
                              } else {
                                carte.setView([45.6, 3.7], 5);  
@@ -149,6 +149,12 @@
                                   marker.setOpacity(1) 
                                  marker.openPopup();
                              }
+                               if (jTrackArray[i]._comment!=""){
+                                   marker.valueOf()._icon.style.backgroundColor = 'green';
+
+                             }
+                             
+                             
                     }
 
                     //Draw line
@@ -163,7 +169,14 @@
                     
                     //function JS to display position:
                     function DisplayPositionInComment(pos) {
-                        return "Date: " + timeConverter(pos._timestamp) +"<br> Altitude: " + pos._alt +" m "+"<br> Battery: "+pos._bat+" %";      // The function returns the product of p1 and p2
+                         console.log("Display _ pos.comment: "+pos._comment);
+                          var posComment= ""
+                          
+                         if(pos._comment!=""){
+                             posComment="<br> Comment:"+ pos._comment;
+                         }
+                         
+                        return "Date: " + timeConverter(pos._timestamp) +"<br> Altitude: " + pos._alt +" m "+"<br> Battery: "+pos._bat+" %"+posComment;      // The function returns the product of p1 and p2
                     }
                     
 
