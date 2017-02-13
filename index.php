@@ -143,7 +143,7 @@
                               mapopup.setContent(DisplayPositionInComment(jTrackArray[i]));
                              // mapopup.setContent('Salut, ça zeste ?'+jTrackArray[i]._datept);
                              // marker.openPopup();
-                             marker.setOpacity(0.4) 	
+                             marker.setOpacity(0.5) 	
                              if (i==0){
                                  var markerCircle = L.circle([jTrackArray[i]._lat, jTrackArray[i]._long],100).addTo(carte);
                                   marker.setOpacity(1) 
