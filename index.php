@@ -45,7 +45,7 @@
                     </div>
                     
                     
-                    <img style="width:5%;position: fixed;float:right;bottom: 1%;right: 1px;" src="/oso_web/assets/img/logo.png">
+                    <img style="width:5%;position: fixed;float:right;bottom: 1%;right: 1px;" src="/oso_web/assets/img/logo_oso_gris2.png">
                     
                     <script type="text/javascript">
                         var input = document.getElementById("searchTxt");   
