@@ -1,9 +1,10 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 # OSO Web
 
 This is the code on the server side for the Android app: https://github.com/fredvol/Oso
 
 
-WORK IN SLOW PROGRESS ....
 
 
 ## License:
